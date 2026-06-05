@@ -156,7 +156,7 @@ function animateNetwork() {
 
     ctx.beginPath();
     ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-    ctx.fillStyle = "rgba(50, 214, 255, 0.72)";
+    ctx.fillStyle = "rgba(45, 215, 215, 0.72)";
     ctx.fill();
   });
 
@@ -168,7 +168,7 @@ function animateNetwork() {
 
       if (distance < 130) {
         const alpha = 1 - distance / 130;
-        ctx.strokeStyle = `rgba(50, 214, 255, ${alpha * 0.18})`;
+        ctx.strokeStyle = `rgba(45, 215, 215, ${alpha * 0.18})`;
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.moveTo(first.x, first.y);
@@ -179,7 +179,7 @@ function animateNetwork() {
   }
 
   if (pointer.active) {
-    ctx.strokeStyle = "rgba(109, 255, 154, 0.22)";
+    ctx.strokeStyle = "rgba(143, 233, 255, 0.26)";
     ctx.lineWidth = 1;
     ctx.beginPath();
     ctx.moveTo(pointer.x - 34, pointer.y);
