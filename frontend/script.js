@@ -4,10 +4,12 @@ headingLetters.forEach((letter, index) => {
 });
 
 const revealTargets = document.querySelectorAll(
-  ".service-card, .process-step, .contact-form, .section-heading, .intro-band p"
+  ".service-card, .process-step, .review-card, .review-score, .review-stats div, .review-marquee, .contact-form, .section-heading, .intro-band p"
 );
 
-revealTargets.forEach((target) => target.classList.add("reveal"));
+revealTargets.forEach((target) => {
+  target.classList.add("reveal");
+});
 
 if ("IntersectionObserver" in window) {
   const revealObserver = new IntersectionObserver(
@@ -26,6 +28,29 @@ if ("IntersectionObserver" in window) {
 } else {
   revealTargets.forEach((target) => target.classList.add("visible"));
 }
+
+const reviewCards = document.querySelectorAll(".review-card");
+const canAnimateReviews = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+reviewCards.forEach((card, index) => {
+  card.style.setProperty("--review-index", index);
+
+  if (!canAnimateReviews) return;
+
+  card.addEventListener("pointermove", (event) => {
+    const rect = card.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width - 0.5;
+    const y = (event.clientY - rect.top) / rect.height - 0.5;
+
+    card.style.setProperty("--rx", `${y * -7}deg`);
+    card.style.setProperty("--ry", `${x * 7}deg`);
+  });
+
+  card.addEventListener("pointerleave", () => {
+    card.style.setProperty("--rx", "0deg");
+    card.style.setProperty("--ry", "0deg");
+  });
+});
 
 const form = document.querySelector(".contact-form");
 const formNote = document.querySelector(".form-note");
