@@ -32,7 +32,9 @@ const formNote = document.querySelector(".form-note");
 const submitButton = form?.querySelector('button[type="submit"]');
 
 function getApiUrls() {
-  if (window.location.port === "5000") {
+  const isLocalhost = ["localhost", "127.0.0.1"].includes(window.location.hostname);
+
+  if ((!isLocalhost && window.location.protocol !== "file:") || window.location.port === "5000") {
     return [""];
   }
 

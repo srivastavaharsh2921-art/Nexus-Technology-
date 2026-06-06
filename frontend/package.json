@@ -1,0 +1,12 @@
+{
+  "name": "nexus-technologies-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static frontend and Vercel functions for Nexus Technologies.",
+  "scripts": {
+    "check": "node --check api/contact.js"
+  },
+  "dependencies": {
+    "nodemailer": "^8.0.10"
+  }
+}
