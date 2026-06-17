@@ -4,7 +4,7 @@ headingLetters.forEach((letter, index) => {
 });
 
 const revealTargets = document.querySelectorAll(
-  ".service-card, .process-step, .review-card, .review-score, .review-stats div, .review-marquee, .contact-form, .section-heading, .intro-band p"
+  ".service-card, .pricing-card, .package-card, .pricing-note, .process-step, .review-card, .review-score, .review-stats div, .review-marquee, .contact-form, .section-heading, .intro-band p"
 );
 
 revealTargets.forEach((target) => {
