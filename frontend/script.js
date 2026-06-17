@@ -4,7 +4,7 @@ headingLetters.forEach((letter, index) => {
 });
 
 const revealTargets = document.querySelectorAll(
-  ".service-card, .pricing-card, .package-card, .pricing-note, .process-step, .review-card, .review-score, .review-stats div, .review-marquee, .contact-form, .section-heading, .intro-band p"
+  ".service-card, .pricing-card, .package-card, .pricing-note, .process-step, .review-card, .review-score, .review-stats div, .review-marquee, .contact-form, .section-heading, .intro-band p, .project-signal-panel, .project-card, .timeline, .timeline-item, .early-access-section, .early-access-form"
 );
 
 revealTargets.forEach((target) => {
@@ -118,6 +118,17 @@ if (form && formNote && submitButton) {
     } finally {
       submitButton.disabled = false;
     }
+  });
+}
+
+const earlyAccessForm = document.querySelector(".early-access-form");
+const earlyAccessNote = document.querySelector(".early-access-note");
+
+if (earlyAccessForm && earlyAccessNote) {
+  earlyAccessForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    earlyAccessNote.textContent = "You're on the early access list. We'll reach out when Career Compass is ready.";
+    earlyAccessForm.reset();
   });
 }
 
