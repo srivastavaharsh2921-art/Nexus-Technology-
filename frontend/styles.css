@@ -1,20 +1,20 @@
 :root {
   color-scheme: dark;
-  --bg: #08141b;
-  --panel: rgba(9, 28, 38, 0.84);
-  --panel-strong: rgba(11, 39, 52, 0.96);
-  --text: #f7fbff;
-  --muted: #b1c3cf;
-  --line: rgba(79, 221, 239, 0.18);
-  --cyan: #29cfe3;
-  --green: #72eff1;
-  --blue: #2859bf;
-  --indigo: #172d80;
-  --ice: #e3fbff;
-  --amber: #f1ac3f;
-  --amber-soft: #ffd06a;
+  --bg: #030810;
+  --panel: rgba(5, 18, 31, 0.88);
+  --panel-strong: rgba(7, 29, 48, 0.96);
+  --text: #f4fbff;
+  --muted: #9fb8c9;
+  --line: rgba(32, 215, 255, 0.2);
+  --cyan: #20d7ff;
+  --green: #64f1ff;
+  --blue: #087de5;
+  --indigo: #153fae;
+  --ice: #e5fbff;
+  --amber: #ff8a00;
+  --amber-soft: #ffb129;
   --danger: #ff6b8a;
-  --shadow: 0 24px 80px rgba(0, 15, 24, 0.58);
+  --shadow: 0 24px 80px rgba(0, 7, 16, 0.68);
 }
 
 * {
@@ -29,9 +29,12 @@ body {
   margin: 0;
   min-height: 100vh;
   background:
-    linear-gradient(135deg, rgba(41, 207, 227, 0.08), transparent 28%),
-    linear-gradient(225deg, rgba(241, 172, 63, 0.07), transparent 34%),
-    linear-gradient(135deg, #071118 0%, #102533 48%, #08141b 100%);
+    linear-gradient(135deg, rgba(32, 215, 255, 0.09), transparent 30%),
+    linear-gradient(225deg, rgba(255, 138, 0, 0.08), transparent 36%),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(135deg, #02060c 0%, #071729 48%, #030810 100%);
+  background-size: auto, auto, 42px 42px, 42px 42px, auto;
   color: var(--text);
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   overflow-x: hidden;
@@ -62,8 +65,8 @@ a {
   justify-content: space-between;
   gap: 1rem;
   padding: 1rem clamp(1rem, 4vw, 4.5rem);
-  border-bottom: 1px solid rgba(79, 221, 239, 0.14);
-  background: rgba(6, 18, 25, 0.8);
+  border-bottom: 1px solid rgba(32, 215, 255, 0.16);
+  background: rgba(2, 8, 15, 0.84);
   backdrop-filter: blur(18px);
 }
 
@@ -83,20 +86,23 @@ a {
 
 .brand-mark {
   display: grid;
-  width: 4.1rem;
-  height: 3rem;
+  width: 3.65rem;
+  height: 3.65rem;
   place-items: center;
-  border: 1px solid rgba(41, 207, 227, 0.42);
-  border-radius: 0.5rem;
+  border: 1px solid rgba(32, 215, 255, 0.5);
+  border-radius: 0.65rem;
   overflow: hidden;
-  background: #0d202a;
-  box-shadow: 0 0 24px rgba(41, 207, 227, 0.18), 0 0 18px rgba(241, 172, 63, 0.1);
+  background: #020810;
+  box-shadow:
+    0 0 24px rgba(32, 215, 255, 0.24),
+    0 0 18px rgba(255, 138, 0, 0.14),
+    inset 0 0 18px rgba(32, 215, 255, 0.1);
 }
 
 .brand-mark img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .nav-links {
@@ -128,9 +134,9 @@ a {
   display: inline-flex;
   align-items: center;
   padding: 0 1rem;
-  background: linear-gradient(135deg, var(--amber-soft), var(--cyan));
+  background: linear-gradient(135deg, var(--amber-soft), var(--amber) 42%, var(--cyan));
   color: #04131f;
-  box-shadow: 0 10px 34px rgba(41, 207, 227, 0.2);
+  box-shadow: 0 10px 34px rgba(32, 215, 255, 0.22), 0 0 18px rgba(255, 138, 0, 0.16);
 }
 
 .hero {
@@ -215,9 +221,9 @@ a {
 }
 
 .primary-button {
-  background: linear-gradient(135deg, var(--indigo), var(--blue) 34%, var(--cyan) 72%, var(--amber-soft));
+  background: linear-gradient(135deg, var(--indigo), var(--blue) 36%, var(--cyan) 74%, var(--amber));
   color: #f7fbff;
-  box-shadow: 0 16px 38px rgba(41, 207, 227, 0.22);
+  box-shadow: 0 16px 38px rgba(32, 215, 255, 0.24);
   text-shadow: 0 1px 10px rgba(0, 0, 0, 0.28);
 }
 
@@ -233,21 +239,22 @@ a {
   padding: 1rem;
   border: 1px solid var(--line);
   border-radius: 0.5rem;
-  background: rgba(8, 25, 34, 0.78);
+  background: rgba(3, 13, 24, 0.82);
   box-shadow: var(--shadow);
 }
 
 .metric-panel {
   min-height: 12rem;
   padding: 1.2rem;
-  border: 1px solid rgba(41, 207, 227, 0.26);
+  border: 1px solid rgba(32, 215, 255, 0.34);
   border-radius: 0.45rem;
   background:
-    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(135deg, rgba(41, 207, 227, 0.12), rgba(241, 172, 63, 0.08)),
-    rgba(255, 255, 255, 0.04);
-  background-size: 22px 22px;
+    linear-gradient(180deg, rgba(2, 8, 15, 0.16), rgba(2, 8, 15, 0.82)),
+    linear-gradient(135deg, rgba(32, 215, 255, 0.16), rgba(255, 138, 0, 0.12)),
+    url("assets/nexus-tech-logo.jpeg");
+  background-position: center;
+  background-size: cover;
+  box-shadow: inset 0 0 52px rgba(32, 215, 255, 0.13);
 }
 
 .metric-label {
@@ -259,10 +266,11 @@ a {
 
 .metric-panel strong {
   display: block;
-  margin-top: 4.5rem;
+  margin-top: 5.8rem;
   font-family: "Space Grotesk", sans-serif;
   font-size: clamp(1.8rem, 4vw, 3.1rem);
   line-height: 1;
+  text-shadow: 0 0 22px rgba(32, 215, 255, 0.38), 0 2px 18px rgba(0, 0, 0, 0.74);
 }
 
 .pulse-list {
@@ -364,7 +372,7 @@ a {
 .service-card::before {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(40, 89, 191, 0.2), transparent 42%, rgba(241, 172, 63, 0.14), rgba(41, 207, 227, 0.12));
+  background: linear-gradient(135deg, rgba(8, 125, 229, 0.24), transparent 42%, rgba(255, 138, 0, 0.14), rgba(32, 215, 255, 0.14));
   opacity: 0;
   transition: opacity 220ms ease;
   content: "";
@@ -372,7 +380,7 @@ a {
 
 .service-card:hover {
   transform: translateY(-0.4rem);
-  border-color: rgba(41, 207, 227, 0.52);
+  border-color: rgba(32, 215, 255, 0.56);
   background: var(--panel-strong);
 }
 
@@ -392,7 +400,7 @@ a {
   place-items: center;
   border: 1px solid rgba(79, 221, 239, 0.22);
   border-radius: 0.45rem;
-  background: linear-gradient(145deg, rgba(40, 89, 191, 0.24), rgba(41, 207, 227, 0.12), rgba(241, 172, 63, 0.1));
+  background: linear-gradient(145deg, rgba(8, 125, 229, 0.28), rgba(32, 215, 255, 0.14), rgba(255, 138, 0, 0.12));
   color: var(--ice);
   font-family: "Space Grotesk", sans-serif;
   font-weight: 800;
@@ -531,8 +539,8 @@ a {
 
 .featured-pricing,
 .premium-package {
-  border-color: rgba(41, 207, 227, 0.42);
-  background: rgba(10, 38, 50, 0.92);
+  border-color: rgba(32, 215, 255, 0.46);
+  background: rgba(4, 28, 48, 0.94);
 }
 
 .pricing-card-top,
@@ -723,10 +731,10 @@ a {
   gap: 1rem;
   min-height: 8rem;
   padding: 1rem;
-  border: 1px solid rgba(241, 172, 63, 0.32);
+  border: 1px solid rgba(255, 138, 0, 0.34);
   border-radius: 0.5rem;
-  background: rgba(241, 172, 63, 0.08);
-  box-shadow: 0 20px 60px rgba(241, 172, 63, 0.08);
+  background: rgba(255, 138, 0, 0.08);
+  box-shadow: 0 20px 60px rgba(255, 138, 0, 0.08);
 }
 
 .review-score > span {
@@ -946,7 +954,7 @@ a {
 }
 
 .contact-form button {
-  background: linear-gradient(135deg, var(--blue), var(--cyan), var(--amber));
+  background: linear-gradient(135deg, var(--indigo), var(--blue), var(--cyan), var(--amber));
   color: #f7fbff;
   font: inherit;
 }
@@ -1098,7 +1106,7 @@ a {
 
 @media (max-width: 620px) {
   .site-header {
-    align-items: flex-start;
+    align-items: center;
     padding: 0.85rem 1rem;
   }
 
@@ -1107,23 +1115,65 @@ a {
   }
 
   .brand-mark {
-    width: 3.7rem;
-    height: 2.55rem;
+    width: 3.15rem;
+    height: 3.15rem;
   }
 
   .header-action {
-    min-height: 2.4rem;
-    padding: 0 0.75rem;
-    font-size: 0.82rem;
+    display: none;
   }
 
   .hero {
     min-height: auto;
+    overflow: hidden;
+    padding-inline: 1rem 2rem;
     padding-bottom: 4rem;
+    width: calc(100vw - 2rem);
+    max-width: calc(100vw - 2rem);
+  }
+
+  .hero-content,
+  .hero-dashboard {
+    width: calc(100% - 1rem);
+    max-width: calc(100% - 1rem);
+    min-width: 0;
   }
 
   .animated-heading {
-    font-size: 3.25rem;
+    flex-direction: column;
+    font-size: 2.65rem;
+    gap: 0.04em;
+  }
+
+  .heading-word {
+    width: 100%;
+  }
+
+  .animated-heading .letter {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .hero-copy {
+    width: 100%;
+    max-width: 100%;
+    font-size: 1.05rem;
+    line-height: 1.6;
+  }
+
+  .hero-actions {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero-actions .primary-button,
+  .hero-actions .secondary-button {
+    max-width: 100%;
+    width: 100%;
   }
 
   .services-grid,
@@ -1166,7 +1216,7 @@ a {
 
 @media (max-width: 380px) {
   .animated-heading {
-    font-size: 2.75rem;
+    font-size: 2.45rem;
   }
 }
 
