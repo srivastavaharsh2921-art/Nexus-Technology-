@@ -123,12 +123,38 @@ if (form && formNote && submitButton) {
 
 const earlyAccessForm = document.querySelector(".early-access-form");
 const earlyAccessNote = document.querySelector(".early-access-note");
+const earlyAccessButton = earlyAccessForm?.querySelector('button[type="submit"]');
 
-if (earlyAccessForm && earlyAccessNote) {
-  earlyAccessForm.addEventListener("submit", (event) => {
+if (earlyAccessForm && earlyAccessNote && earlyAccessButton) {
+  earlyAccessForm.addEventListener("submit", async (event) => {
     event.preventDefault();
-    earlyAccessNote.textContent = "You're on the early access list. We'll reach out when Career Compass is ready.";
-    earlyAccessForm.reset();
+    earlyAccessNote.classList.remove("error");
+    earlyAccessNote.textContent = "Adding you to the early access list...";
+    earlyAccessButton.disabled = true;
+
+    const formData = new FormData(earlyAccessForm);
+    const payload = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      project: "Career Compass Early Access",
+      message: "Please notify me when Career Compass early access is available.",
+    };
+
+    try {
+      const result = await sendInquiry(payload);
+
+      earlyAccessNote.textContent =
+        result.message || "You're on the early access list. We'll reach out when Career Compass is ready.";
+      earlyAccessForm.reset();
+    } catch (error) {
+      earlyAccessNote.classList.add("error");
+      earlyAccessNote.textContent =
+        error instanceof TypeError
+          ? "Could not connect to the backend. Open http://localhost:5000 and try again."
+          : error.message || "Something went wrong. Please try again.";
+    } finally {
+      earlyAccessButton.disabled = false;
+    }
   });
 }
 

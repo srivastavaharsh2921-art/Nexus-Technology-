@@ -534,12 +534,21 @@ a {
   cursor: pointer;
 }
 
+.early-access-form button:disabled {
+  cursor: wait;
+  opacity: 0.68;
+}
+
 .early-access-note {
   min-height: 1.3rem;
   margin: 0;
   color: var(--green);
   font-size: 0.92rem;
   font-weight: 700;
+}
+
+.early-access-note.error {
+  color: var(--danger);
 }
 
 .header-action {
