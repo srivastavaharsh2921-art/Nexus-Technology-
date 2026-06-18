@@ -18,7 +18,7 @@ function drawNavIcon(isOpen) {
     const line = document.createElement("span");
     Object.assign(line.style, {
       display: "block",
-      width: "1.25rem",
+      width: "1rem",
       height: "2px",
       borderRadius: "999px",
       background: "var(--ice)",
@@ -26,7 +26,7 @@ function drawNavIcon(isOpen) {
     });
 
     if (isOpen && index === 0) {
-      line.style.transform = "translateY(6px) rotate(45deg)";
+      line.style.transform = "translateY(5px) rotate(45deg)";
     }
 
     if (isOpen && index === 1) {
@@ -34,7 +34,7 @@ function drawNavIcon(isOpen) {
     }
 
     if (isOpen && index === 2) {
-      line.style.transform = "translateY(-6px) rotate(-45deg)";
+      line.style.transform = "translateY(-5px) rotate(-45deg)";
     }
 
     navToggle.appendChild(line);
@@ -91,19 +91,22 @@ function syncMobileNav() {
   }
 
   Object.assign(navToggle.style, {
-    position: "fixed",
-    top: "calc(var(--announcement-height) + 1.15rem)",
-    right: window.innerWidth <= 620 ? "auto" : "1rem",
-    left: window.innerWidth <= 620 ? `${Math.max(16, Math.min(window.innerWidth - 76, 330))}px` : "auto",
+    position: "static",
+    top: "auto",
+    right: "auto",
+    left: "auto",
     zIndex: "20",
     display: "inline-grid",
-    width: "2.75rem",
-    height: "2.75rem",
+    width: "2.15rem",
+    height: "2.15rem",
     placeItems: "center",
-    gap: "0.25rem",
+    gap: "0.2rem",
+    flex: "0 0 auto",
+    marginLeft: "0",
+    marginRight: window.innerWidth <= 620 ? "0.45rem" : "0.7rem",
     padding: "0",
     border: "1px solid rgba(32, 215, 255, 0.42)",
-    borderRadius: "0.55rem",
+    borderRadius: "0.45rem",
     background: "rgba(3, 13, 24, 0.98)",
     boxShadow: "0 0 24px rgba(32, 215, 255, 0.24), inset 0 0 20px rgba(32, 215, 255, 0.12)",
   });
