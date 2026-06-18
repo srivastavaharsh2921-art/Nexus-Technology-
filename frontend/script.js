@@ -3,6 +3,149 @@ headingLetters.forEach((letter, index) => {
   letter.style.setProperty("--i", index);
 });
 
+const siteHeader = document.querySelector(".site-header");
+const navToggle = document.querySelector(".nav-toggle");
+const navMenu = document.querySelector(".nav-links");
+const navLinks = document.querySelectorAll(".nav-links a");
+const mobileNavQuery = window.matchMedia("(max-width: 1080px)");
+
+function drawNavIcon(isOpen) {
+  if (!navToggle) return;
+
+  navToggle.innerHTML = "";
+
+  [0, 1, 2].forEach((index) => {
+    const line = document.createElement("span");
+    Object.assign(line.style, {
+      display: "block",
+      width: "1.25rem",
+      height: "2px",
+      borderRadius: "999px",
+      background: "var(--ice)",
+      transition: "transform 180ms ease, opacity 180ms ease",
+    });
+
+    if (isOpen && index === 0) {
+      line.style.transform = "translateY(6px) rotate(45deg)";
+    }
+
+    if (isOpen && index === 1) {
+      line.style.opacity = "0";
+    }
+
+    if (isOpen && index === 2) {
+      line.style.transform = "translateY(-6px) rotate(-45deg)";
+    }
+
+    navToggle.appendChild(line);
+  });
+}
+
+function styleMobileNavPanel(isOpen) {
+  if (!navMenu) return;
+
+  if (!mobileNavQuery.matches) {
+    navMenu.removeAttribute("style");
+    return;
+  }
+
+  if (!isOpen) {
+    navMenu.style.display = "none";
+    return;
+  }
+
+  Object.assign(navMenu.style, {
+    position: "fixed",
+    top: "calc(var(--announcement-height) + 5.2rem)",
+    left: "1rem",
+    right: window.innerWidth <= 620 ? "auto" : "1rem",
+    width: window.innerWidth <= 620 ? `${Math.min(window.innerWidth - 32, 358)}px` : "auto",
+    zIndex: "19",
+    display: "grid",
+    gridTemplateColumns: window.innerWidth <= 620 ? "1fr" : "repeat(2, minmax(0, 1fr))",
+    gap: "0.5rem",
+    maxHeight: "calc(100vh - var(--announcement-height) - 6rem)",
+    overflowY: "auto",
+    padding: "0.75rem",
+    border: "1px solid rgba(32, 215, 255, 0.22)",
+    borderRadius: "0.5rem",
+    background: "rgba(2, 8, 15, 0.96)",
+    boxShadow: "var(--shadow)",
+    backdropFilter: "blur(18px)",
+    opacity: "1",
+    pointerEvents: "auto",
+    transform: "none",
+    visibility: "visible",
+  });
+}
+
+function syncMobileNav() {
+  if (!navToggle) return;
+
+  if (!mobileNavQuery.matches) {
+    navToggle.style.display = "none";
+    styleMobileNavPanel(false);
+    siteHeader?.classList.remove("nav-open");
+    navToggle.setAttribute("aria-expanded", "false");
+    return;
+  }
+
+  Object.assign(navToggle.style, {
+    position: "fixed",
+    top: "calc(var(--announcement-height) + 1.15rem)",
+    right: window.innerWidth <= 620 ? "auto" : "1rem",
+    left: window.innerWidth <= 620 ? `${Math.max(16, Math.min(window.innerWidth - 76, 330))}px` : "auto",
+    zIndex: "20",
+    display: "inline-grid",
+    width: "2.75rem",
+    height: "2.75rem",
+    placeItems: "center",
+    gap: "0.25rem",
+    padding: "0",
+    border: "1px solid rgba(32, 215, 255, 0.42)",
+    borderRadius: "0.55rem",
+    background: "rgba(3, 13, 24, 0.98)",
+    boxShadow: "0 0 24px rgba(32, 215, 255, 0.24), inset 0 0 20px rgba(32, 215, 255, 0.12)",
+  });
+
+  drawNavIcon(siteHeader?.classList.contains("nav-open"));
+  styleMobileNavPanel(siteHeader?.classList.contains("nav-open"));
+}
+
+function setNavOpen(isOpen) {
+  siteHeader?.classList.toggle("nav-open", isOpen);
+  navToggle?.setAttribute("aria-expanded", String(isOpen));
+  navToggle?.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
+  drawNavIcon(isOpen);
+  styleMobileNavPanel(isOpen);
+}
+
+if (siteHeader && navToggle) {
+  navToggle.addEventListener("click", (event) => {
+    event.preventDefault();
+    setNavOpen(!siteHeader.classList.contains("nav-open"));
+  });
+
+  navLinks.forEach((link) => {
+    link.addEventListener("click", () => setNavOpen(false));
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      setNavOpen(false);
+    }
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!siteHeader.contains(event.target)) {
+      setNavOpen(false);
+    }
+  });
+
+  window.addEventListener("resize", syncMobileNav);
+  syncMobileNav();
+}
+
 const revealTargets = document.querySelectorAll(
   ".service-card, .pricing-card, .package-card, .pricing-note, .process-step, .review-card, .review-score, .review-stats div, .review-marquee, .contact-form, .section-heading, .intro-band p, .project-signal-panel, .project-card, .timeline, .timeline-item, .early-access-section, .early-access-form, .about-orbit-panel, .about-story-card, .about-feature-card, .vision-card, .values-grid span, .founder-card, .team-card, .about-timeline, .about-timeline-step, .tech-badge-grid span, .about-cta-section"
 );

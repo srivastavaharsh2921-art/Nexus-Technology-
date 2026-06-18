@@ -193,6 +193,71 @@ a {
   color: var(--text);
 }
 
+.nav-toggle {
+  position: fixed;
+  top: calc(var(--announcement-height) + 1.15rem);
+  right: 1rem;
+  z-index: 20;
+  display: inline-grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  gap: 0.25rem;
+  border: 1px solid rgba(32, 215, 255, 0.32);
+  border-radius: 0.55rem;
+  background: rgba(3, 13, 24, 0.96);
+  color: var(--text);
+  cursor: pointer;
+  box-shadow: 0 0 24px rgba(32, 215, 255, 0.2), inset 0 0 20px rgba(32, 215, 255, 0.1);
+}
+
+.nav-toggle span {
+  display: none;
+  width: 1.25rem;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--ice);
+  transition: transform 180ms ease, opacity 180ms ease;
+}
+
+.nav-toggle::before {
+  display: block;
+  width: 1.25rem;
+  height: 0.85rem;
+  border-top: 2px solid var(--ice);
+  border-bottom: 2px solid var(--ice);
+  background: linear-gradient(var(--ice), var(--ice)) center / 100% 2px no-repeat;
+  content: "";
+}
+
+@media (min-width: 1081px) {
+  .nav-toggle {
+    display: none;
+  }
+}
+
+.mobile-menu-button {
+  display: inline-grid;
+}
+
+@media (min-width: 1081px) {
+  .mobile-menu-button {
+    display: none;
+  }
+}
+
+.site-header.nav-open .nav-toggle span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.site-header.nav-open .nav-toggle span:nth-child(2) {
+  opacity: 0;
+}
+
+.site-header.nav-open .nav-toggle span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
 .header-action,
 .primary-button,
 .secondary-button,
@@ -1965,10 +2030,91 @@ a {
 @media (max-width: 1080px) {
   .site-header {
     position: sticky;
+    padding-right: 4.6rem;
+  }
+
+  .nav-toggle {
+    position: fixed;
+    top: calc(var(--announcement-height) + 1.15rem);
+    right: clamp(1rem, 4vw, 4.5rem);
+    z-index: 20;
+    display: inline-grid;
+    flex: 0 0 auto;
+    margin-left: 0;
+    padding: 0;
+    background: rgba(3, 13, 24, 0.96);
+    box-shadow: 0 0 24px rgba(32, 215, 255, 0.2), inset 0 0 20px rgba(32, 215, 255, 0.1);
+  }
+
+  .mobile-menu-button {
+    position: fixed !important;
+    top: calc(var(--announcement-height) + 1.15rem) !important;
+    right: 1rem !important;
+    z-index: 999 !important;
+    display: inline-grid !important;
+    width: 2.75rem !important;
+    height: 2.75rem !important;
+    place-items: center !important;
+    border: 1px solid rgba(32, 215, 255, 0.42) !important;
+    border-radius: 0.55rem !important;
+    background: rgba(3, 13, 24, 0.98) !important;
+    box-shadow: 0 0 24px rgba(32, 215, 255, 0.24), inset 0 0 20px rgba(32, 215, 255, 0.12) !important;
+  }
+
+  .mobile-menu-button::before {
+    display: block !important;
+    width: 1.25rem !important;
+    height: 0.85rem !important;
+    border-top: 2px solid var(--ice) !important;
+    border-bottom: 2px solid var(--ice) !important;
+    background: linear-gradient(var(--ice), var(--ice)) center / 100% 2px no-repeat !important;
+    content: "" !important;
+  }
+
+  .site-header.nav-open .nav-toggle::before {
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 0;
+    background:
+      linear-gradient(45deg, transparent 47%, var(--ice) 48%, var(--ice) 54%, transparent 55%),
+      linear-gradient(-45deg, transparent 47%, var(--ice) 48%, var(--ice) 54%, transparent 55%);
   }
 
   .nav-links {
-    display: none;
+    position: absolute;
+    top: calc(100% + 0.75rem);
+    left: clamp(1rem, 4vw, 4.5rem);
+    right: clamp(1rem, 4vw, 4.5rem);
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+    padding: 0.75rem;
+    border: 1px solid rgba(32, 215, 255, 0.22);
+    border-radius: 0.5rem;
+    background: rgba(2, 8, 15, 0.96);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(18px);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-0.6rem);
+    transition: opacity 180ms ease, transform 180ms ease, visibility 180ms ease;
+    visibility: hidden;
+  }
+
+  .site-header.nav-open .nav-links {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+    visibility: visible;
+  }
+
+  .nav-links a {
+    min-width: 0;
+    padding: 0.9rem 1rem;
+    border: 1px solid rgba(32, 215, 255, 0.12);
+    border-radius: 0.45rem;
+    background: rgba(79, 221, 239, 0.045);
+    color: #d9f7ff;
   }
 
   .hero,
@@ -2058,7 +2204,20 @@ a {
 
   .site-header {
     align-items: center;
-    padding: 0.85rem 1rem;
+    padding: 0.85rem 4.6rem 0.85rem 1rem;
+  }
+
+  .nav-toggle {
+    right: 1rem;
+  }
+
+  .nav-links {
+    top: calc(100% + 0.5rem);
+    left: 1rem;
+    right: 1rem;
+    grid-template-columns: 1fr;
+    max-height: calc(100vh - var(--announcement-height) - 6rem);
+    overflow-y: auto;
   }
 
   .brand {
